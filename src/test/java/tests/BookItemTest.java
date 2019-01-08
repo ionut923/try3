@@ -1,6 +1,5 @@
 package tests;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +15,13 @@ import steps.validation.ItemValidationSteps;
 
 @RunWith(SerenityRunner.class)
 public class BookItemTest extends BaseTest {
-	
+
 	@Steps
 	LoginFlowSteps loginFlowSteps;
 	@Steps
 	ItemValidationSteps itemValidationSteps;
 	@Steps
-    BookingFlowSteps bookingFlowSteps;
+	BookingFlowSteps bookingFlowSteps;
 	@Steps
 	ApiCreateItemFlowSteps apiCreateItemFlowSteps;
 	@Steps
@@ -36,7 +35,7 @@ public class BookItemTest extends BaseTest {
 	}
 
 	@Test
-	public void bookItemTest(){
+	public void bookItemTest() {
 		homePageSteps.navigateToHomePage();
 		loginFlowSteps.login();
 		bookingFlowSteps.bookAllItemsFromCategory();

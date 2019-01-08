@@ -82,8 +82,6 @@ public class BookingsPage extends AbstractPage {
 		}
 		return createdBookings;
 	}
-	
-	
 
 	public List<WebElementFacade> selectBookings(List<Booking> expectedBookingList) {
 
@@ -91,18 +89,18 @@ public class BookingsPage extends AbstractPage {
 				.thenFindAll(By.cssSelector("div[class*='item-booking-container']"));
 
 		Predicate<WebElementFacade> bookingCheck = bookingInUi -> expectedBookingList.stream()
-				.anyMatch(expectedBooking -> expectedBooking.getItem().getTitle() == bookingInUi
-						.find(By.cssSelector("div[class*='booking-details-container'] ul li:nth-child(1) a")).getText()
-						.trim()
-						&& expectedBooking.getStartDate() == bookingInUi
-								.find(By.cssSelector(
-										"div[class*='booking-details-container'] ul li:nth-child(2) span:nth-child(2)"))
-								.getText());
+				.anyMatch(expectedBooking -> expectedBooking.getItem().getTitle()
+						.contentEquals(bookingInUi
+								.find(By.cssSelector("div[class*='booking-details-container'] ul li:nth-child(1) a"))
+								.getText().trim())
+						&& expectedBooking.getStartDate()
+								.contentEquals(bookingInUi
+										.find(By.cssSelector(
+												"div[class*='booking-details-container'] ul li:nth-child(2) span:nth-child(2)"))
+										.getText()));
 
 		return bookingsInUi.stream().filter(bookingCheck).collect(Collectors.toList());
 	}
-	
-	
 
 	public WebElementFacade selectBookingToReturn(String itemName) {
 		List<WebElementFacade> bookings = itemBookingsContainer

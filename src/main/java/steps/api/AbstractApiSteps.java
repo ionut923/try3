@@ -14,10 +14,10 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.specification.RequestSpecification;
 
 import constants.ApiUrlConstants;
-import steps.AbstractSteps;
+import net.thucydides.core.steps.ScenarioSteps;
 
 
-public class AbstractApiSteps extends AbstractSteps{
+public class AbstractApiSteps extends ScenarioSteps{
 
 	private static final long serialVersionUID = 1L;
 	private static RequestSpecification tokenSpec = null;

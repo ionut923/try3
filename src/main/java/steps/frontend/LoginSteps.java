@@ -13,7 +13,7 @@ public class LoginSteps extends AbstractSteps {
 
 	@Step
 	public void login() {
-		loginPage.enterEmail(EnvironmentConstants.USER_NAME);
+		loginPage.enterEmail(EnvironmentConstants.USER);
 		loginPage.enterPassword(EnvironmentConstants.PASS);
 		loginPage.submit();
 	}

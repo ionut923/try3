@@ -1,6 +1,7 @@
 package steps.validation;
 
 import java.util.List;
+import java.util.Objects;
 
 import constants.SerenityKeyConstants;
 import entities.Booking;
@@ -34,7 +35,10 @@ public class ItemValidationSteps {
 		for (Booking expectedBooking : expectedBookings) {
 
 			Booking actualBooking = findBookingInList(expectedBooking, actualdBookings);
-			counter = actualBooking != null ? counter++ : counter;
+			
+			if(Objects.nonNull(actualBooking)){
+				counter++;
+			}
 
 			SoftValidation.verifyStringValuesIgnoreCase("status", expectedBooking.getStatus(),
 					actualBooking.getStatus());
@@ -45,7 +49,6 @@ public class ItemValidationSteps {
 					actualBooking.getUser().getName());
 			SoftValidation.verifyStringValues("item", expectedBooking.getItem().getTitle(),
 					actualBooking.getItem().getTitle());
-
 		}
 
 		SoftValidation.verifyIntValues("no. of validations vs booking list size:", counter, expectedBookings.size());
