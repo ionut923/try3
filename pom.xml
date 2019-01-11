@@ -109,7 +109,7 @@
 				</os>
 			</activation>
 			<properties>
-				<webdriver.chrome.path>resources${file.separator}chromedriverlinux237</webdriver.chrome.path>
+				<webdriver.chrome.path>resources${file.separator}chromedriverlinux240</webdriver.chrome.path>
 			</properties>
 		</profile>
 	</profiles>
