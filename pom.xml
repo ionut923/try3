@@ -106,7 +106,7 @@
 				</os>
 			</activation>
 			<properties>
-				<webdriver.chrome.path>resources${file.separator}chromedriver</webdriver.chrome.path>
+				<webdriver.chrome.path>resources${file.separator}chromedriverlinux2.43</webdriver.chrome.path>
 			</properties>
 		</profile>
 	</profiles>
