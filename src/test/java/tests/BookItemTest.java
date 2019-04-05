@@ -37,6 +37,7 @@ public class BookItemTest extends BaseTest {
 	@Test
 	public void bookItemTest() {
 		homePageSteps.navigateToHomePage();
+		//cocojambo
 		loginFlowSteps.login();
 		bookingFlowSteps.bookAllItemsFromCategory();
 		pageNavigationFlowSteps.goToMyBookings();
