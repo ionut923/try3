@@ -1,18 +1,21 @@
 package steps.frontend;
 
-import constants.SerenityKeyConstants;
+import com.google.inject.Inject;
+
+import dao.booking.BookingAbstractDao;
 import entities.Booking;
 import net.thucydides.core.annotations.Step;
 import pages.ItemsPage;
 import steps.AbstractSteps;
 import tools.factories.BookingFactory;
-import tools.utils.SerenitySessionUtils;
 
 public class ItemSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 
 	ItemsPage itemsPage;
+	@Inject
+	BookingAbstractDao bookingAbstgractDao;
 
 	@Step
 	public void bookItem(String itemTitle){
@@ -23,8 +26,9 @@ public class ItemSteps extends AbstractSteps {
 		itemsPage.selectEndDate(booking.getEndDate());
 		itemsPage.selectEndHour(booking.getEndDate());
 		itemsPage.saveBooking();
+		
+		bookingAbstgractDao.saveBooking(booking);
 
-		SerenitySessionUtils.saveObjectListInSerenitySession(SerenityKeyConstants.BOOKINGS, booking);
 	}
 	
 	@Step

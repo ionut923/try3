@@ -3,7 +3,10 @@ package steps.validation;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.inject.Inject;
+
 import constants.SerenityKeyConstants;
+import dao.booking.BookingAbstractDao;
 import entities.Booking;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
@@ -15,10 +18,13 @@ public class ItemValidationSteps {
 
 	@Steps
 	SoftValidation softValidation;
+	
+	@Inject
+	BookingAbstractDao bookingAbstractDao;
 
 	@Step
 	public void validateBookedItems() {
-		List<Booking> expectedBookings = SerenitySessionUtils.getFromSession(SerenityKeyConstants.BOOKINGS);
+		List<Booking> expectedBookings = bookingAbstractDao.getBookings();
 		List<Booking> actualdBookings = bookingsPage.getBookings(expectedBookings);
 		validateBookings(expectedBookings, actualdBookings);
 	}

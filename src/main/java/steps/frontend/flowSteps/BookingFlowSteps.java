@@ -21,7 +21,7 @@ public class BookingFlowSteps {
 	ItemSteps itemSteps;
 
 	@StepGroup
-	public void bookItemsFromCategory(List<Item> items) {
+	public void bookItems(List<Item> items) {
 		for (Item item : items) {
 			SerenitySessionUtils.putOnSession(SerenityKeyConstants.ITEM, item);
 			headerSteps.selectHeader("ITEMS");
@@ -31,9 +31,9 @@ public class BookingFlowSteps {
 	}
 
 	@StepGroup
-	public void bookAllItemsFromCategory() {
+	public void bookAllItems() {
 		List<Item> items = SerenitySessionUtils.getFromSession(SerenityKeyConstants.ITEMS);
-		bookItemsFromCategory(items);
+		bookItems(items);
 	}
 
 	@StepGroup

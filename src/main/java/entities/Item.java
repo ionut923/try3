@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -98,4 +100,13 @@ public class Item {
 	public void setCategoryTitle(String categoryTitle) {
 		this.categoryTitle = categoryTitle;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [title=" + title + ", categoryId=" + categoryId + ", customFields=" + Arrays.toString(customFields)
+				+ ", id=" + id + ", category=" + category + ", name=" + name + ", itemTag=" + itemTag + ", description="
+				+ description + ", categoryTitle=" + categoryTitle + "]";
+	}
+	
+	
 }

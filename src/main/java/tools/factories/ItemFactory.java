@@ -10,8 +10,9 @@ import tools.utils.FieldGenerator;
 import tools.utils.SerenitySessionUtils;
 
 public class ItemFactory {
-
-	public static Item geItemInstance() {
+	
+	public Item geItemInstance() {
+		
 		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
 		Item item = new Item();
 		item.setTitle("Item - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
@@ -27,7 +28,7 @@ public class ItemFactory {
 		return item;
 	}
 
-	public static Item geItemCSVInstance() {
+	public Item geItemCSVInstance() {
 		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
 		Item item = new Item();
 		item.setTitle("Item - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
@@ -43,7 +44,7 @@ public class ItemFactory {
 		return item;
 	}
 
-	public static List<Item> getItemCSVInstantceList(int numberOfItems) {
+	public List<Item> getItemCSVInstantceList(int numberOfItems) {
 		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
 		List<Item> items = new ArrayList<Item>();
 

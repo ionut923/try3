@@ -17,7 +17,7 @@ public class SerenitySessionUtils {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void saveObjectListInSerenitySession(String key, Object obj) {
+	public static void saveObjectInSerenityList(String key, Object obj) {
 		if (!Serenity.getCurrentSession().containsKey(key)) {
 			Serenity.getCurrentSession().put(key, new ArrayList<>());
 		}

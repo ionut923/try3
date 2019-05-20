@@ -1,12 +1,21 @@
 package tests;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.google.inject.Inject;
+
+import dao.category.CategoryAbstractDao;
+import dao.item.ItemAbstractDao;
+import entities.Item;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
-import steps.api.flowSteps.ApiCreateItemFlowSteps;
+import steps.api.ApiCategorySteps;
+import steps.api.ApiItemSteps;
+import steps.api.ApiLoginSteps;
 import steps.frontend.HomePageSteps;
 import steps.frontend.flowSteps.BookingFlowSteps;
 import steps.frontend.flowSteps.LoginFlowSteps;
@@ -23,22 +32,37 @@ public class BookItemTest extends BaseTest {
 	@Steps
 	BookingFlowSteps bookingFlowSteps;
 	@Steps
-	ApiCreateItemFlowSteps apiCreateItemFlowSteps;
+	ApiLoginSteps apiLoginSteps;
+	@Steps
+	ApiCategorySteps apiCategorySteps;
+	@Steps
+	ApiItemSteps apiItemSteps;
 	@Steps
 	HomePageSteps homePageSteps;
 	@Steps
 	PageNavigationFlowSteps pageNavigationFlowSteps;
+	
+	@Inject
+	ItemAbstractDao itemAbstractDao;
+	@Inject
+	CategoryAbstractDao categoryAbstractDao;
 
 	@Before
 	public void setUp() {
-		apiCreateItemFlowSteps.createItem();
+		apiLoginSteps.loginAsAdmin();
+		apiCategorySteps.createCategory();
+		apiItemSteps.createItem();
+		apiCategorySteps.createCategory();
+		apiItemSteps.createItem();
 	}
 
 	@Test
 	public void bookItemTest() {
 		homePageSteps.navigateToHomePage();
 		loginFlowSteps.login();
-		bookingFlowSteps.bookAllItemsFromCategory();
+		List<Item> itemsFromFirstCategory = itemAbstractDao
+				.getItemsByCategoryId(String.valueOf(categoryAbstractDao.getCategories().get(0).getId()));
+		bookingFlowSteps.bookItems(itemsFromFirstCategory);
 		pageNavigationFlowSteps.goToMyBookings();
 		itemValidationSteps.validateBookedItems();
 	}

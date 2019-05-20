@@ -5,7 +5,7 @@ import tools.utils.FieldGenerator;
 
 public class CategoryFactory {
 
-    public static Category getCategoryInstance() {
+	public Category getCategoryInstance() {
         Category category = new Category();
         category.setName("Category - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
 

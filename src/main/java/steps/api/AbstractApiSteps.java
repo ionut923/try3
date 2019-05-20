@@ -13,9 +13,9 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.specification.RequestSpecification;
 
 import constants.ApiUrlConstants;
-import net.thucydides.core.steps.ScenarioSteps;
+import steps.AbstractSteps;
 
-public class AbstractApiSteps extends ScenarioSteps {
+public class AbstractApiSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 	private static RequestSpecification tokenSpec = null;
@@ -29,17 +29,17 @@ public class AbstractApiSteps extends ScenarioSteps {
 		return tokenSpec;
 	}
 
-	protected static <T> T createResource(String path, Object requestBody, Class<T> responseClass) {
+	protected <T> T createResource(String path, Object requestBody, Class<T> responseClass) {
 		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).body(requestBody).when().post(path)
 				.then().assertThat().statusCode(anyOf(is(201), is(200), is(302))).extract().as(responseClass);
 	}
 
-	protected static <T> T updateResource(String path, Object requestBody, Class<T> responseClass) {
+	protected <T> T updateResource(String path, Object requestBody, Class<T> responseClass) {
 		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).body(requestBody).when().put(path)
 				.then().assertThat().statusCode(anyOf(is(201), is(200), is(302))).extract().as(responseClass);
 	}
 
-	protected static <T> T getResource(String path, Class<T> responseClass) {
+	protected <T> T getResource(String path, Class<T> responseClass) {
 		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).when().get(path).then().assertThat()
 				.statusCode(anyOf(is(201), is(200), is(302))).extract().as(responseClass);
 	}

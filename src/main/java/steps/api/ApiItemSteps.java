@@ -1,24 +1,32 @@
 package steps.api;
 
+import com.google.inject.Inject;
+
 import constants.ApiUrlConstants;
-import constants.SerenityKeyConstants;
+import dao.item.ItemAbstractDao;
 import entities.Item;
 import net.thucydides.core.annotations.Step;
+import steps.AbstractSteps;
 import tools.factories.ItemFactory;
 import tools.utils.InstanceUtils;
-import tools.utils.SerenitySessionUtils;
 
-public class ApiItemSteps extends AbstractApiSteps {
+public class ApiItemSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 
-    @Step
-    public void createItem() {
+	@Inject
+	ItemAbstractDao itemAbstractDao;
+	@Inject 
+	ItemFactory itemfactory;
+	@Inject
+	AbstractApiSteps abstractApiSteps;
+	
+	@Step
+	public void createItem() {
+		Item itemRequest = itemfactory.geItemInstance();
+		Item itemResponse = abstractApiSteps.createResource(ApiUrlConstants.ITEMS, itemRequest, Item.class);
 
-        Item itemRequest = ItemFactory.geItemInstance();
-        Item itemResponse = createResource(ApiUrlConstants.ITEMS, itemRequest, Item.class);
-
-        itemRequest = (Item) InstanceUtils.mergeObjects(itemRequest, itemResponse);
-        SerenitySessionUtils.saveObjectListInSerenitySession(SerenityKeyConstants.ITEMS, itemRequest);
-    }
+		itemRequest = (Item) InstanceUtils.mergeObjects(itemRequest, itemResponse);
+		itemAbstractDao.addItem(itemRequest);
+	}
 }
