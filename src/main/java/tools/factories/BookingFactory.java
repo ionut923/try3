@@ -1,8 +1,5 @@
 package tools.factories;
 
-
-
-
 import constants.DateConstants;
 import constants.SerenityKeyConstants;
 import constants.StatusConstants;
@@ -13,15 +10,17 @@ import tools.utils.DateUtils;
 import tools.utils.SerenitySessionUtils;
 
 public class BookingFactory {
-	
-	public static Booking getBookingInstance() {
+
+	public Booking getBookingInstance() {
 		User sessionUser = SerenitySessionUtils.getFromSession(SerenityKeyConstants.USER);
 		Item item = SerenitySessionUtils.getFromSession(SerenityKeyConstants.ITEM);
 		Booking booking = new Booking();
 
 		booking.setStatus(StatusConstants.ACCEPTED);
-		booking.setStartDate(DateUtils.formatDate(DateUtils.addHoursToCurrentDate(2), DateConstants.WW_PATTERN));
-		booking.setEndDate(DateUtils.formatDate(DateUtils.addHoursToCurrentDate(3), DateConstants.WW_PATTERN));
+		booking.setStartDate(
+				DateUtils.convertLocalDateTimeToString(DateUtils.addHoursToCurrentDate(2), DateConstants.WW_PATTERN));
+		booking.setEndDate(
+				DateUtils.convertLocalDateTimeToString(DateUtils.addHoursToCurrentDate(3), DateConstants.WW_PATTERN));
 		booking.setItem(item);
 		booking.setUser(sessionUser);
 
@@ -36,14 +35,17 @@ public class BookingFactory {
 		booking.setUserId(userRequest.getId());
 		booking.setItem(item);
 		booking.setUser(userRequest);
-		booking.setStartDate(DateUtils.formatDate(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
-		booking.setEndDate(DateUtils.formatDate(DateUtils.addHoursToCurrentDate(1), DateConstants.WW_PATTERN));
-		booking.setClientTime(DateUtils.formatDate(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
+		booking.setStartDate(
+				DateUtils.convertLocalDateTimeToString(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
+		booking.setEndDate(
+				DateUtils.convertLocalDateTimeToString(DateUtils.addHoursToCurrentDate(1), DateConstants.WW_PATTERN));
+		booking.setClientTime(
+				DateUtils.convertLocalDateTimeToString(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
 
 		return booking;
 	}
 
-	public static Booking getApiBookingReturnInstance(){
+	public static Booking getApiBookingReturnInstance() {
 		Booking booking = SerenitySessionUtils.getFromSession(SerenityKeyConstants.BOOKING);
 		booking.setReturnItem(true);
 

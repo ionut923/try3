@@ -33,6 +33,19 @@ public class AbstractApiSteps extends AbstractSteps {
 		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).body(requestBody).when().post(path)
 				.then().assertThat().statusCode(anyOf(is(201), is(200), is(302))).extract().as(responseClass);
 	}
+	protected <T> T createResourceee(String path,String param1, String param2, String param3,Class<T> responseClass) {
+		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).queryParam("key", param1)
+				.queryParam("token", param2).queryParam("name", param3)
+				.when().post(path)
+				.then().assertThat().statusCode(anyOf(is(201), is(200), is(302))).extract().as(responseClass);
+	}
+	@SuppressWarnings("unchecked")
+	protected <T> T createResourcee(String path,String param1, String param2, String param3) {
+		return (T) given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).queryParam("key", param1)
+				.queryParam("token", param2).queryParam("name", param3)
+				.when().post(path)
+				.then().assertThat().statusCode(anyOf(is(201), is(200), is(302))).extract().asString();
+	}
 
 	protected <T> T updateResource(String path, Object requestBody, Class<T> responseClass) {
 		return given().relaxedHTTPSValidation().spec(getSpecWithExtraHeaders()).body(requestBody).when().put(path)

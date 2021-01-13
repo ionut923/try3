@@ -6,7 +6,7 @@ import constants.SerenityKeyConstants;
 import entities.Category;
 import tools.utils.SerenitySessionUtils;
 
-public class CategoryDao implements CategoryAbstractDao{
+public class CategoryDao implements CategoryAbstractDao {
 
 	@Override
 	public void saveCategory(Category category) {
@@ -17,7 +17,12 @@ public class CategoryDao implements CategoryAbstractDao{
 	@Override
 	public List<Category> getCategories() {
 		return SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORIES);
-		
+
 	}
 
+	@Override
+	public Category getLastCreatedCategory() {
+		List<Category> categories = getCategories();
+		return categories.get(categories.size() - 1);
+	}
 }

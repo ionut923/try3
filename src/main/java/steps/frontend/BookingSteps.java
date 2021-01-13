@@ -40,7 +40,7 @@ public class BookingSteps extends AbstractSteps {
 	@Step
 	public void returnItem(Booking booking) {
 		bookingsPage.returnItem(booking.getItem().getTitle());
-		booking.setEndDate(DateUtils.formatDate(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
+		booking.setEndDate(DateUtils.convertLocalDateTimeToString(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
 		booking.setStatus(StatusConstants.COMPLETED);
 	}
 

@@ -28,14 +28,11 @@ public class DateUtils {
 		return ldt;
 	}
 
-	public static String formatDate(LocalDateTime date, String format) {
-
+	public static String convertLocalDateTimeToString(LocalDateTime date, String format) {
 		return date.format(DateTimeFormatter.ofPattern(format));
 	}
-	
-	public static String formatStringDate(String dateString,  String formatString) {
-		LocalDateTime date = LocalDateTime.parse(dateString);
 
-		return date.format(DateTimeFormatter.ofPattern(formatString));
+	public static LocalDateTime convertStringToLocalDateTime(String dateString, String formatString) {
+		return LocalDateTime.parse(dateString);
 	}
 }

@@ -3,17 +3,21 @@ package tools.factories;
 import java.util.ArrayList;
 import java.util.List;
 
-import constants.SerenityKeyConstants;
+import com.google.inject.Inject;
+
+import dao.category.CategoryAbstractDao;
 import entities.Category;
 import entities.Item;
 import tools.utils.FieldGenerator;
-import tools.utils.SerenitySessionUtils;
 
 public class ItemFactory {
-	
+
+	@Inject
+	CategoryAbstractDao categoryAbstractDao;
+
 	public Item geItemInstance() {
-		
-		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
+
+		Category category = categoryAbstractDao.getLastCreatedCategory();
 		Item item = new Item();
 		item.setTitle("Item - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
 		item.setCustomFields(new Object[0]);
@@ -29,7 +33,7 @@ public class ItemFactory {
 	}
 
 	public Item geItemCSVInstance() {
-		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
+		Category category = categoryAbstractDao.getLastCreatedCategory();
 		Item item = new Item();
 		item.setTitle("Item - " + FieldGenerator.generateStringValue(6, FieldGenerator.TypeOfString.ALPHANUMERIC));
 		item.setCustomFields(new Object[0]);
@@ -45,7 +49,7 @@ public class ItemFactory {
 	}
 
 	public List<Item> getItemCSVInstantceList(int numberOfItems) {
-		Category category = SerenitySessionUtils.getFromSession(SerenityKeyConstants.CATEGORY);
+		Category category = categoryAbstractDao.getLastCreatedCategory();
 		List<Item> items = new ArrayList<Item>();
 
 		for (int i = 0; i < numberOfItems; i++) {

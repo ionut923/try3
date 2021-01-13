@@ -12,5 +12,7 @@ public interface CategoryAbstractDao {
 	public void saveCategory (Category category);
 	
 	public List<Category> getCategories();
+	
+	public Category getLastCreatedCategory();
 
 }

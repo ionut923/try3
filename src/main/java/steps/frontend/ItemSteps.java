@@ -16,10 +16,12 @@ public class ItemSteps extends AbstractSteps {
 	ItemsPage itemsPage;
 	@Inject
 	BookingAbstractDao bookingAbstgractDao;
+	@Inject
+	BookingFactory bookingFactory;
 
 	@Step
 	public void bookItem(String itemTitle){
-		Booking booking = BookingFactory.getBookingInstance();
+		Booking booking = bookingFactory.getBookingInstance();
 		itemsPage.clickBookItem(itemTitle);
 		itemsPage.selectStartDate(booking.getStartDate());
 		itemsPage.selectStartHour(booking.getStartDate());

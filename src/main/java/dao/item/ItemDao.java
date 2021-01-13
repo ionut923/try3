@@ -9,7 +9,6 @@ import constants.SerenityKeyConstants;
 import entities.Item;
 import tools.utils.SerenitySessionUtils;
 
-@Singleton
 public class ItemDao implements ItemAbstractDao {
 
 	@Override
