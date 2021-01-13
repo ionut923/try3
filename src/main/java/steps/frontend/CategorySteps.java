@@ -12,11 +12,11 @@ public class CategorySteps extends AbstractSteps {
 
 	@Step
 	public void selectCategory(String categoryName) {
-		categoriesPage.selectCategory(categoryName);
+	//	categoriesPage.selectCategory(categoryName);
 	}
 
 	@Step
 	public void searchItem(String itemName) {
-		categoriesPage.searchItem(itemName);
+	//	categoriesPage.searchItem(itemName);
 	}
 }

@@ -9,7 +9,7 @@ import entities.Booking;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.annotations.Title;
-import pages.BookingsPage;
+//import pages.BookingsPage;
 import steps.AbstractSteps;
 import tools.utils.DateUtils;
 import tools.utils.SerenitySessionUtils;
@@ -18,7 +18,7 @@ public class BookingSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 
-	BookingsPage bookingsPage;
+	//BookingsPage bookingsPage;
 
 	@StepGroup
 	public void returnAllItems() {
@@ -39,13 +39,13 @@ public class BookingSteps extends AbstractSteps {
 	@Title("Return item")
 	@Step
 	public void returnItem(Booking booking) {
-		bookingsPage.returnItem(booking.getItem().getTitle());
+		//bookingsPage.returnItem(booking.getItem().getTitle());
 		booking.setEndDate(DateUtils.convertLocalDateTimeToString(DateUtils.getCurrentDate(), DateConstants.WW_PATTERN));
 		booking.setStatus(StatusConstants.COMPLETED);
 	}
 
 	@Step
 	public void checkBookings(String bookingCategory) {
-		bookingsPage.checkBookingCategory(bookingCategory);
+	//	bookingsPage.checkBookingCategory(bookingCategory);
 	}
 }

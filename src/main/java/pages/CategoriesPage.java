@@ -16,24 +16,24 @@ public class CategoriesPage extends AbstractPage {
 	@FindBy(css = "div[class*='list-container']")
 	WebElementFacade cont;
 
-	public void selectCategory(String categoryName) {
-		WebElementFacade selectedCategory = getCategory(categoryName);
-		selectedCategory.find(By.cssSelector("h3 a")).click();
-	}
+//	public void selectCategory(String categoryName) {
+//		WebElementFacade selectedCategory = getCategory(categoryName);
+//		selectedCategory.find(By.cssSelector("h3 a")).click();
+//	}
 
-	public WebElementFacade getCategory(String categoryName) {
-		List<WebElementFacade> categoryList = categoriesContainer.thenFindAll("div[class*='categoryDetails']");
-		WebElementFacade searchedCategory = categoryList.stream()
-				.filter(element -> element.find(By.cssSelector("h3 a")).getText().contentEquals(categoryName))
-				.findFirst().orElse(null);
-		Assert.assertTrue("The element has not been found", searchedCategory != null);
-		return searchedCategory;
-	}
+//	public WebElementFacade getCategory(String categoryName) {
+//		List<WebElementFacade> categoryList = categoriesContainer.thenFindAll("div[class*='categoryDetails']");
+//		WebElementFacade searchedCategory = categoryList.stream()
+//				.filter(element -> element.find(By.cssSelector("h3 a")).getText().contentEquals(categoryName))
+//				.findFirst().orElse(null);
+//		Assert.assertTrue("The element has not been found", searchedCategory != null);
+//		return searchedCategory;
+//	}
 
-	public void searchItem(String itemName) {
-		searchBar.waitUntilClickable();
-		searchBar.clear();
-		searchBar.sendKeys(itemName);
-	}
+//	public void searchItem(String itemName) {
+//		searchBar.waitUntilClickable();
+//		searchBar.clear();
+//		searchBar.sendKeys(itemName);
+//	}
 
 }

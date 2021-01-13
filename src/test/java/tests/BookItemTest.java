@@ -58,7 +58,7 @@ public class BookItemTest extends BaseTest {
 
 	@Test
 	public void bookItemTest() {
-//		homePageSteps.navigateToHomePage();
+		homePageSteps.navigateToHomePage();
 //		loginFlowSteps.login();
 //		List<Item> itemsFromLastCategory = itemAbstractDao
 //				.getItemsByCategoryId(String.valueOf(categoryAbstractDao.getLastCreatedCategory()));

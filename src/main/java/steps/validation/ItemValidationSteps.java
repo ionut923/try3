@@ -10,11 +10,11 @@ import dao.booking.BookingAbstractDao;
 import entities.Booking;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
-import pages.BookingsPage;
+//import pages.BookingsPage;
 import tools.utils.SerenitySessionUtils;
 
 public class ItemValidationSteps {
-	BookingsPage bookingsPage;
+	//BookingsPage bookingsPage;
 
 	@Steps
 	SoftValidation softValidation;
@@ -25,15 +25,15 @@ public class ItemValidationSteps {
 	@Step
 	public void validateBookedItems() {
 		List<Booking> expectedBookings = bookingAbstractDao.getBookings();
-		List<Booking> actualdBookings = bookingsPage.getBookings(expectedBookings);
-		validateBookings(expectedBookings, actualdBookings);
+		//List<Booking> actualdBookings = bookingsPage.getBookings(expectedBookings);
+	//	validateBookings(expectedBookings, actualdBookings);
 	}
 
 	@Step
 	public void validateItemsAreReturned() {
 		List<Booking> expectedBookings = SerenitySessionUtils.getFromSession(SerenityKeyConstants.BOOKINGS);
-		List<Booking> actualdBookings = bookingsPage.getBookings(expectedBookings);
-		validateBookings(expectedBookings, actualdBookings);
+	//	List<Booking> actualdBookings = bookingsPage.getBookings(expectedBookings);
+	//	validateBookings(expectedBookings, actualdBookings);
 	}
 
 	private void validateBookings(List<Booking> expectedBookings, List<Booking> actualdBookings) {

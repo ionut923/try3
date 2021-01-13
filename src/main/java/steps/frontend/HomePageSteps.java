@@ -17,7 +17,7 @@ public class HomePageSteps extends AbstractSteps {
     }
 
     public void navigateToHomePage(){
-        getDriver().get(EnvironmentConstants.BASE_URL);
+        getDriver().get("https://google.com");
         getDriver().manage().window().maximize();
     }
 }
